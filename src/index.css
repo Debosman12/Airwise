@@ -1,0 +1,113 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    -webkit-tap-highlight-color: transparent;
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-slate-950 text-slate-100 antialiased selection:bg-sky-500 selection:text-white;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  }
+}
+
+/* Custom smooth transitions */
+.transition-card {
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Subtle glow effects for cards */
+@layer utilities {
+  .glow-sky {
+    box-shadow: 0 0 20px rgba(56, 189, 248, 0.08), 0 0 60px rgba(56, 189, 248, 0.03);
+  }
+  .glow-subtle {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3), 0 8px 32px rgba(0, 0, 0, 0.2);
+  }
+}
+
+/* Leaflet Custom Marker Pins */
+.leaflet-div-icon {
+  background: transparent !important;
+  border: none !important;
+}
+
+.aqi-map-pin {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 5px 10px;
+  border-radius: 9999px;
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 11px;
+  line-height: 1;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.55), 0 1px 3px rgba(0, 0, 0, 0.3);
+  border: 2px solid rgba(255, 255, 255, 0.95);
+  cursor: pointer;
+  white-space: nowrap;
+  user-select: none;
+  transform: translate(-50%, -50%);
+  transition: transform 0.15s ease-out, box-shadow 0.15s ease-out;
+  backdrop-filter: blur(4px);
+}
+
+.aqi-map-pin:hover {
+  transform: translate(-50%, -50%) scale(1.08);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6), 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+.aqi-map-pin:active {
+  transform: translate(-50%, -50%) scale(0.95);
+}
+
+.aqi-map-pin .pin-val {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+}
+
+.aqi-map-pin .pin-label {
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  opacity: 0.95;
+}
+
+/* Custom scrollbar for desktop */
+@media (min-width: 1024px) {
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(100, 116, 139, 0.3);
+    border-radius: 999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(100, 116, 139, 0.5);
+  }
+}
+
+/* Animation helpers */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.3s ease-out forwards;
+}
